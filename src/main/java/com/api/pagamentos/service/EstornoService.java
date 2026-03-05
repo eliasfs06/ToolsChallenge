@@ -28,7 +28,12 @@ public class EstornoService {
      * @return resposta com a transação atualizada.
      */
     @Transactional
-        public PagamentoRespostaDTO estornar(String requisicaoId) {
+    public PagamentoRespostaDTO estornar(String requisicaoId) {
+
+        if (requisicaoId == null || requisicaoId.trim().isBlank()) {
+            throw new NegocioException("Id d transação não informado.");
+        }
+
         Transacao transacao = transacaoRepositorio.findByIdNegocio(requisicaoId)
                 .orElseThrow(() -> new NegocioException("Transação não encontrada para o id informado."));
 
