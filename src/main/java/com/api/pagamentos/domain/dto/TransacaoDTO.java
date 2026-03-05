@@ -1,21 +1,23 @@
 package com.api.pagamentos.domain.dto;
 
-import com.api.pagamentos.domain.enumeration.StatusTransacao;
-import com.fasterxml.jackson.annotation.JsonInclude;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 /**
- * DTO que representa a transação no contrato HTTP (entrada/saída).
+ * DTO que representa a transação no contrato HTTP.
  */
-@JsonInclude(JsonInclude.Include.NON_NULL)
 public class TransacaoDTO {
 
+    @NotBlank(message = "O campo cartão é obrigatório.")
     private String cartao;
-    private String id;
-    private DescricaoDTO descricao;
 
-    private String nsu;
-    private String codigoAutorizacao;
-    private StatusTransacao status;
+    @NotBlank(message = "O campo id é obrigatório.")
+    private String id;
+
+    @NotNull(message = "O campo descrição é obrigatório.")
+    @Valid
+    private DescricaoDTO descricao;
 
     public String getCartao() {
         return cartao;
@@ -39,29 +41,5 @@ public class TransacaoDTO {
 
     public void setDescricao(DescricaoDTO descricao) {
         this.descricao = descricao;
-    }
-
-    public String getNsu() {
-        return nsu;
-    }
-
-    public void setNsu(String nsu) {
-        this.nsu = nsu;
-    }
-
-    public String getCodigoAutorizacao() {
-        return codigoAutorizacao;
-    }
-
-    public void setCodigoAutorizacao(String codigoAutorizacao) {
-        this.codigoAutorizacao = codigoAutorizacao;
-    }
-
-    public StatusTransacao getStatus() {
-        return status;
-    }
-
-    public void setStatus(StatusTransacao status) {
-        this.status = status;
     }
 }

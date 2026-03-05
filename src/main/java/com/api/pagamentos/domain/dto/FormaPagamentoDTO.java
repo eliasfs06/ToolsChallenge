@@ -1,15 +1,17 @@
 package com.api.pagamentos.domain.dto;
 
 import com.api.pagamentos.domain.enumeration.TipoFormaPagamento;
-import com.fasterxml.jackson.annotation.JsonInclude;
+import jakarta.validation.constraints.NotNull;
 
 /**
  * DTO que representa a forma de pagamento no contrato HTTP.
  */
-@JsonInclude(JsonInclude.Include.NON_NULL)
 public class FormaPagamentoDTO {
 
+    @NotNull(message = "O campo tipo é obrigatório.")
     private TipoFormaPagamento tipo;
+
+    @NotNull(message = "O campo parcelas é obrigatório.")
     private Integer parcelas;
 
     public TipoFormaPagamento getTipo() {

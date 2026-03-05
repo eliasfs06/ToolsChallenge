@@ -5,6 +5,7 @@ import com.api.pagamentos.domain.dto.PagamentoRespostaDTO;
 import com.api.pagamentos.service.ConsultaTransacaoService;
 import com.api.pagamentos.service.EstornoService;
 import com.api.pagamentos.service.PagamentoService;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -39,7 +40,7 @@ public class TransacaoRestController {
      * @return transação processada com o resultado (status, nsu e código de autorização quando aplicável).
      */
     @PostMapping("/pagar")
-    public ResponseEntity<PagamentoRespostaDTO> pagar(@RequestBody PagamentoRequisicaoDTO requisicao) {
+    public ResponseEntity<PagamentoRespostaDTO> pagar(@Valid @RequestBody PagamentoRequisicaoDTO requisicao) {
         PagamentoRespostaDTO resposta = pagamentoService.pagar(requisicao);
         return ResponseEntity.status(HttpStatus.CREATED).body(resposta);
     }
