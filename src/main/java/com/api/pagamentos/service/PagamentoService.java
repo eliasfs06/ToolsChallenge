@@ -23,6 +23,7 @@ public class PagamentoService {
 
     private static final int TAMANHO_PADRAO_NSU = 10;
     private static final int TAMANHO_PADRAO_CODIGO_AUTORIZACAO = 10;
+    private static final int VALOR_MAXIMO_TRANSACAO_AUTORIZADA = 1000;
 
     private final TransacaoRepositorio transacaoRepositorio;
     private final SecureRandom random = new SecureRandom();
@@ -59,13 +60,13 @@ public class PagamentoService {
 
     private void preencheEstadosDeRetornoDaTransacao(boolean autorizado, Transacao transacao) {
         if (autorizado) {
-            transacao.setStatus(StatusTransacao.AUTORIZADO);
-            transacao.setNsu(gerarNumero(TAMANHO_PADRAO_NSU));
-            transacao.setCodigoAutorizacao(gerarNumero(TAMANHO_PADRAO_CODIGO_AUTORIZACAO));
+            transacao.getDescricao().setStatus(StatusTransacao.AUTORIZADO);
+            transacao.getDescricao().setNsu(gerarNumero(TAMANHO_PADRAO_NSU));
+            transacao.getDescricao().setCodigoAutorizacao(gerarNumero(TAMANHO_PADRAO_CODIGO_AUTORIZACAO));
         } else {
-            transacao.setStatus(StatusTransacao.NEGADO);
-            transacao.setNsu(null);
-            transacao.setCodigoAutorizacao(null);
+            transacao.getDescricao().setStatus(StatusTransacao.NEGADO);
+            transacao.getDescricao().setNsu(null);
+            transacao.getDescricao().setCodigoAutorizacao(null);
         }
     }
 
@@ -77,7 +78,7 @@ public class PagamentoService {
         if (valor == null) {
             return false;
         }
-        return valor.compareTo(BigDecimal.ZERO) > 0 && valor.compareTo(new BigDecimal("1000")) <= 0;
+        return valor.compareTo(BigDecimal.ZERO) > 0 && valor.compareTo(new BigDecimal(VALOR_MAXIMO_TRANSACAO_AUTORIZADA)) <= 0;
     }
 
 

@@ -57,9 +57,9 @@ public final class PagamentoMapper {
         descricaoDTO.setEstabelecimento(entidade.getDescricao().getEstabelecimento());
 
         // Campos de retorno (colocados em descricao para refletir o exemplo)
-        descricaoDTO.setNsu(entidade.getNsu());
-        descricaoDTO.setCodigoAutorizacao(entidade.getCodigoAutorizacao());
-        descricaoDTO.setStatus(entidade.getStatus());
+        descricaoDTO.setNsu(entidade.getDescricao().getNsu());
+        descricaoDTO.setCodigoAutorizacao(entidade.getDescricao().getCodigoAutorizacao());
+        descricaoDTO.setStatus(entidade.getDescricao().getStatus());
 
         transacaoDTO.setDescricao(descricaoDTO);
 

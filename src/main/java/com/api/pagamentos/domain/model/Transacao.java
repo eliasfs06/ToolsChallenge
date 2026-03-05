@@ -37,16 +37,6 @@ public class Transacao {
     @Embedded
     private FormaPagamento formaPagamento;
 
-    @Column(name = "nsu", length = 30)
-    private String nsu;
-
-    @Column(name = "codigo_autorizacao", length = 30)
-    private String codigoAutorizacao;
-
-    @Enumerated(EnumType.STRING)
-    @Column(name = "status", nullable = false, length = 15)
-    private StatusTransacao status;
-
     @Column(name = "criado_em", nullable = false)
     private LocalDateTime criadoEm;
 
@@ -92,30 +82,6 @@ public class Transacao {
 
     public void setFormaPagamento(FormaPagamento formaPagamento) {
         this.formaPagamento = formaPagamento;
-    }
-
-    public String getNsu() {
-        return nsu;
-    }
-
-    public void setNsu(String nsu) {
-        this.nsu = nsu;
-    }
-
-    public String getCodigoAutorizacao() {
-        return codigoAutorizacao;
-    }
-
-    public void setCodigoAutorizacao(String codigoAutorizacao) {
-        this.codigoAutorizacao = codigoAutorizacao;
-    }
-
-    public StatusTransacao getStatus() {
-        return status;
-    }
-
-    public void setStatus(StatusTransacao status) {
-        this.status = status;
     }
 
     public LocalDateTime getCriadoEm() {
