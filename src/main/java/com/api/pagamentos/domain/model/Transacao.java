@@ -2,6 +2,7 @@ package com.api.pagamentos.domain.model;
 
 import com.api.pagamentos.domain.enumeration.StatusTransacao;
 import jakarta.persistence.*;
+import org.hibernate.envers.Audited;
 
 import java.time.LocalDateTime;
 
@@ -16,6 +17,7 @@ import java.time.LocalDateTime;
             @Index(name = "idx_transacao_id_negocio", columnList = "id_negocio", unique = true)
     }
 )
+@Audited
 public class Transacao {
 
     @Id
