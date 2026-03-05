@@ -13,11 +13,11 @@ import org.springframework.transaction.annotation.Transactional;
  * Serviço responsável pelo estorno de transações.
  */
 @Service
-public class EstornoServico {
+public class EstornoService {
 
     private final TransacaoRepositorio transacaoRepositorio;
 
-    public EstornoServico(TransacaoRepositorio transacaoRepositorio) {
+    public EstornoService(TransacaoRepositorio transacaoRepositorio) {
         this.transacaoRepositorio = transacaoRepositorio;
     }
 

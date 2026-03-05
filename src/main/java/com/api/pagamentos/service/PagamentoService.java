@@ -19,7 +19,7 @@ import java.security.SecureRandom;
  * Serviço responsável pelo fluxo de pagamento.
  */
 @Service
-public class PagamentoServico {
+public class PagamentoService {
 
     private static final int TAMANHO_PADRAO_NSU = 10;
     private static final int TAMANHO_PADRAO_CODIGO_AUTORIZACAO = 10;
@@ -27,7 +27,7 @@ public class PagamentoServico {
     private final TransacaoRepositorio transacaoRepositorio;
     private final SecureRandom random = new SecureRandom();
 
-    public PagamentoServico(TransacaoRepositorio transacaoRepositorio) {
+    public PagamentoService(TransacaoRepositorio transacaoRepositorio) {
         this.transacaoRepositorio = transacaoRepositorio;
     }
 
