@@ -1,7 +1,7 @@
 package com.api.pagamentos.restControllers;
 
-import com.api.pagamentos.domain.dto.PagamentoRequisicaoDTO;
-import com.api.pagamentos.domain.dto.PagamentoRespostaDTO;
+import com.api.pagamentos.domain.dto.transacao.PagamentoRequisicaoDTO;
+import com.api.pagamentos.domain.dto.transacao.PagamentoRespostaDTO;
 import com.api.pagamentos.service.ConsultaTransacaoService;
 import com.api.pagamentos.service.EstornoService;
 import com.api.pagamentos.service.PagamentoService;

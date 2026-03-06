@@ -1,8 +1,7 @@
 package com.api.pagamentos.exceptions;
 
-import com.api.pagamentos.domain.dto.ErroCampoDTO;
-import com.api.pagamentos.domain.dto.ErroRespostaDTO;
-import com.api.pagamentos.exceptions.NotFoundException;
+import com.api.pagamentos.domain.dto.errorHandler.ErroCampoDTO;
+import com.api.pagamentos.domain.dto.errorHandler.ErroRespostaDTO;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.ConstraintViolationException;
 import org.springframework.http.HttpStatus;

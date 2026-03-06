@@ -1,6 +1,6 @@
 package com.api.pagamentos.service;
 
-import com.api.pagamentos.domain.dto.PagamentoRespostaDTO;
+import com.api.pagamentos.domain.dto.transacao.PagamentoRespostaDTO;
 import com.api.pagamentos.domain.mappers.PagamentoMapper;
 import com.api.pagamentos.domain.model.Transacao;
 import com.api.pagamentos.exceptions.NegocioException;

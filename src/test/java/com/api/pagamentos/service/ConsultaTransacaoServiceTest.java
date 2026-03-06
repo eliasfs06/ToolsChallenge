@@ -1,6 +1,6 @@
 package com.api.pagamentos.service;
 
-import com.api.pagamentos.domain.dto.PagamentoRespostaDTO;
+import com.api.pagamentos.domain.dto.transacao.PagamentoRespostaDTO;
 import com.api.pagamentos.domain.enumeration.StatusTransacao;
 import com.api.pagamentos.domain.enumeration.TipoFormaPagamento;
 import com.api.pagamentos.domain.model.DescricaoTransacao;

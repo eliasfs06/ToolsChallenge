@@ -1,6 +1,6 @@
 package com.api.pagamentos.domain.mappers;
 
-import com.api.pagamentos.domain.dto.*;
+import com.api.pagamentos.domain.dto.transacao.*;
 import com.api.pagamentos.domain.model.DescricaoTransacao;
 import com.api.pagamentos.domain.model.FormaPagamento;
 import com.api.pagamentos.domain.model.Transacao;

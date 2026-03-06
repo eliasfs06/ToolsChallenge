@@ -1,4 +1,4 @@
-package com.api.pagamentos.domain.dto;
+package com.api.pagamentos.domain.dto.errorHandler;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 

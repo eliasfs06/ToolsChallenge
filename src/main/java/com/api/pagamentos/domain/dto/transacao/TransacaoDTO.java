@@ -1,4 +1,4 @@
-package com.api.pagamentos.domain.dto;
+package com.api.pagamentos.domain.dto.transacao;
 
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
