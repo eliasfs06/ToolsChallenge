@@ -4,6 +4,7 @@ import com.api.pagamentos.domain.dto.PagamentoRespostaDTO;
 import com.api.pagamentos.domain.mappers.PagamentoMapper;
 import com.api.pagamentos.domain.model.Transacao;
 import com.api.pagamentos.exceptions.NegocioException;
+import com.api.pagamentos.exceptions.NotFoundException;
 import com.api.pagamentos.repository.TransacaoRepositorio;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -35,7 +36,7 @@ public class ConsultaTransacaoService {
         }
 
         Transacao transacao = transacaoRepositorio.findByIdNegocio(id)
-                .orElseThrow(() -> new NegocioException("Transação não encontrada para o id informado."));
+                .orElseThrow(() -> new NotFoundException("Transação não encontrada para o id informado."));
 
         return PagamentoMapper.paraResposta(transacao);
     }
