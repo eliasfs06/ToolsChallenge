@@ -3,12 +3,15 @@ package com.api.pagamentos.domain.dto;
 import com.api.pagamentos.domain.enumeration.StatusTransacao;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+
+import static com.fasterxml.jackson.annotation.JsonProperty.Access.READ_ONLY;
 
 /**
  * DTO com os dados descritivos da transação.
@@ -27,8 +30,13 @@ public class DescricaoDTO {
     @NotBlank(message = "O campo estabelecimento é obrigatório.")
     private String estabelecimento;
 
+    @JsonProperty(access = READ_ONLY)
     private String nsu;
+
+    @JsonProperty(access = READ_ONLY)
     private String codigoAutorizacao;
+
+    @JsonProperty(access = READ_ONLY)
     private StatusTransacao status;
 
     public BigDecimal getValor() {
