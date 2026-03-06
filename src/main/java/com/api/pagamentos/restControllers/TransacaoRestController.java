@@ -5,6 +5,8 @@ import com.api.pagamentos.domain.dto.PagamentoRespostaDTO;
 import com.api.pagamentos.service.ConsultaTransacaoService;
 import com.api.pagamentos.service.EstornoService;
 import com.api.pagamentos.service.PagamentoService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,6 +17,7 @@ import java.util.List;
 /**
  * REST Controller responsável por expor as operações de pagamento, consulta e estorno de transações.
  */
+@Tag(name = "Transações", description = "Operações de pagamento, consulta e estorno.")
 @RestController
 @RequestMapping("/transacoes")
 public class TransacaoRestController {
@@ -39,6 +42,7 @@ public class TransacaoRestController {
      * @param requisicao dados do pagamento.
      * @return transação processada com o resultado (status, nsu e código de autorização quando aplicável).
      */
+    @Operation(summary = "Realizar pagamento")
     @PostMapping("/pagar")
     public ResponseEntity<PagamentoRespostaDTO> pagar(@Valid @RequestBody PagamentoRequisicaoDTO requisicao) {
         PagamentoRespostaDTO resposta = pagamentoService.pagar(requisicao);
@@ -51,8 +55,9 @@ public class TransacaoRestController {
      * @param id identificador de negócio da transação.
      * @return transação encontrada.
      */
+    @Operation(summary = "Consultar transação por ID")
     @GetMapping("/{id}")
-    public ResponseEntity<PagamentoRespostaDTO> consultarPorId(@PathVariable("id") String id) {
+    public ResponseEntity<PagamentoRespostaDTO> consultarPorId(@PathVariable String id) {
         PagamentoRespostaDTO resposta = consultaTransacaoService.consultarPorId(id);
         return ResponseEntity.ok(resposta);
     }
@@ -62,6 +67,7 @@ public class TransacaoRestController {
      *
      * @return lista de transações.
      */
+    @Operation(summary = "Listar todas as transações")
     @GetMapping("/listar")
     public ResponseEntity<List<PagamentoRespostaDTO>> listarTodas() {
         List<PagamentoRespostaDTO> resposta = consultaTransacaoService.listarTodas();
@@ -74,8 +80,9 @@ public class TransacaoRestController {
      * @param id identificador de negócio da transação.
      * @return transação após o estorno (status CANCELADO).
      */
+    @Operation(summary = "Estornar transação")
     @PostMapping("/{id}/estorno")
-    public ResponseEntity<PagamentoRespostaDTO> estornar(@PathVariable("id") String id) {
+    public ResponseEntity<PagamentoRespostaDTO> estornar(@PathVariable String id) {
         PagamentoRespostaDTO resposta = estornoService.estornar(id);
         return ResponseEntity.ok(resposta);
     }
