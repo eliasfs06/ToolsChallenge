@@ -1,0 +1,226 @@
+{
+  "info": {
+    "_postman_id": "ca5762b1-918e-41e8-8ee4-02dac45aa80b",
+    "name": "API Pagamentos - Tools Java Challenge",
+    "description": "Collection Postman para testes da API de pagamentos, baseada no desafio Tools Java Challenge e nos endpoints implementados.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "29627930"
+  },
+  "item": [
+    {
+      "name": "Pagamento",
+      "item": [
+        {
+          "name": "Realizar pagamento - AVISTA",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Status HTTP esperado', function () {",
+                  "    pm.expect([200, 201]).to.include(pm.response.code);",
+                  "});",
+                  "",
+                  "const json = pm.response.json();",
+                  "const id = json?.transacao?.id || json?.id;",
+                  "if (id) {",
+                  "    pm.collectionVariables.set('idTransacao', id);",
+                  "}"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"transacao\": {\n    \"cartao\": \"4444********1234\",\n    \"id\": \"100023568900001\",\n    \"descricao\": {\n      \"valor\": \"500.50\",\n      \"dataHora\": \"01/05/2021 18:30:00\",\n      \"estabelecimento\": \"PetShop Mundo cão\"\n    },\n    \"formaPagamento\": {\n      \"tipo\": \"AVISTA\",\n      \"parcelas\": \"1\"\n    }\n  }\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/transacoes/pagar",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "transacoes",
+                "pagar"
+              ]
+            },
+            "description": "Requisição principal de pagamento com payload baseado no PDF do desafio."
+          },
+          "response": []
+        },
+        {
+          "name": "Realizar pagamento - PARCELADO LOJA",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"transacao\": {\n    \"cartao\": \"5555********9876\",\n    \"id\": \"100023568900002\",\n    \"descricao\": {\n      \"valor\": \"1500.00\",\n      \"dataHora\": \"15/06/2021 10:15:30\",\n      \"estabelecimento\": \"Loja Exemplo\"\n    },\n    \"formaPagamento\": {\n      \"tipo\": \"PARCELADO LOJA\",\n      \"parcelas\": \"3\"\n    }\n  }\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/transacoes/pagar",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "transacoes",
+                "pagar"
+              ]
+            },
+            "description": "Variação para validar um dos tipos de forma de pagamento exigidos no desafio."
+          },
+          "response": []
+        },
+        {
+          "name": "Realizar pagamento - PARCELADO EMISSOR",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"transacao\": {\n    \"cartao\": \"6666********4321\",\n    \"id\": \"100023568900003\",\n    \"descricao\": {\n      \"valor\": \"250.75\",\n      \"dataHora\": \"20/06/2021 14:45:00\",\n      \"estabelecimento\": \"Farmacia Central\"\n    },\n    \"formaPagamento\": {\n      \"tipo\": \"PARCELADO EMISSOR\",\n      \"parcelas\": \"6\"\n    }\n  }\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/transacoes/pagar",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "transacoes",
+                "pagar"
+              ]
+            },
+            "description": "Variação para validar o segundo tipo parcelado exigido no desafio."
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Consulta",
+      "item": [
+        {
+          "name": "Consultar todas as transacoes",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/transacoes/listar",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "transacoes",
+                "listar"
+              ]
+            },
+            "description": "Consulta de todas as transações cadastradas."
+          },
+          "response": []
+        },
+        {
+          "name": "Consultar transacao por ID",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/transacoes/{{idTransacao}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "transacoes",
+                "{{idTransacao}}"
+              ]
+            },
+            "description": "Consulta da transação pelo identificador. Usa a variável idTransacao salva após a execução do pagamento."
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Estorno",
+      "item": [
+        {
+          "name": "Estornar transacao por ID",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/transacoes/{{idTransacao}}/estorno",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "transacoes",
+                "{{idTransacao}}",
+                "estorno"
+              ]
+            },
+            "description": "Estorno da transação por ID."
+          },
+          "response": []
+        }
+      ]
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:8080/pagamentos-api",
+      "type": "string"
+    },
+    {
+      "key": "idTransacao",
+      "value": "100023568900001",
+      "type": "string"
+    }
+  ]
+}
