@@ -19,6 +19,11 @@ public class TransacaoDTO {
     @Valid
     private DescricaoDTO descricao;
 
+    @NotNull(message = "O campo formaPagamento é obrigatório.")
+    @Valid
+    private FormaPagamentoDTO formaPagamento;
+
+
     public String getCartao() {
         return cartao;
     }
@@ -41,5 +46,13 @@ public class TransacaoDTO {
 
     public void setDescricao(DescricaoDTO descricao) {
         this.descricao = descricao;
+    }
+
+    public FormaPagamentoDTO getFormaPagamento() {
+        return formaPagamento;
+    }
+
+    public void setFormaPagamento(FormaPagamentoDTO formaPagamento) {
+        this.formaPagamento = formaPagamento;
     }
 }

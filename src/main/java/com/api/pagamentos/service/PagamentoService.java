@@ -83,7 +83,7 @@ public class PagamentoService {
 
 
     private void validarRequisicaoDePagamento(PagamentoRequisicaoDTO req) {
-        if (req == null || req.getTransacao() == null || req.getFormaPagamento() == null) {
+        if (req == null || req.getTransacao() == null) {
             throw new NegocioException("Payload inválido.");
         }
 
@@ -107,8 +107,8 @@ public class PagamentoService {
             throw new NegocioException("O campo transacao.descricao.estabelecimento é obrigatório.");
         }
 
-        TipoFormaPagamento tipo = req.getFormaPagamento().getTipo();
-        Integer parcelas = req.getFormaPagamento().getParcelas();
+        TipoFormaPagamento tipo = req.getTransacao().getFormaPagamento().getTipo();
+        Integer parcelas = req.getTransacao().getFormaPagamento().getParcelas();
 
         if (tipo == null) {
             throw new NegocioException("O campo formaPagamento.tipo é obrigatório.");

@@ -121,10 +121,10 @@ class PagamentoServiceTest {
         FormaPagamentoDTO forma = new FormaPagamentoDTO();
         forma.setTipo(tipo);
         forma.setParcelas(parcelas);
+        transacaoDTO.setFormaPagamento(forma);
 
         PagamentoRequisicaoDTO req = new PagamentoRequisicaoDTO();
         req.setTransacao(transacaoDTO);
-        req.setFormaPagamento(forma);
         return req;
     }
 }

@@ -31,8 +31,8 @@ public final class PagamentoMapper {
         entidade.setDescricao(descricao);
 
         FormaPagamento forma = new FormaPagamento();
-        forma.setTipo(dto.getFormaPagamento().getTipo());
-        forma.setParcelas(dto.getFormaPagamento().getParcelas());
+        forma.setTipo(dto.getTransacao().getFormaPagamento().getTipo());
+        forma.setParcelas(dto.getTransacao().getFormaPagamento().getParcelas());
         entidade.setFormaPagamento(forma);
 
         return entidade;
@@ -66,9 +66,9 @@ public final class PagamentoMapper {
         FormaPagamentoDTO formaDTO = new FormaPagamentoDTO();
         formaDTO.setTipo(entidade.getFormaPagamento().getTipo());
         formaDTO.setParcelas(entidade.getFormaPagamento().getParcelas());
+        transacaoDTO.setFormaPagamento(formaDTO);
 
         resposta.setTransacao(transacaoDTO);
-        resposta.setFormaPagamento(formaDTO);
         return resposta;
     }
 }
