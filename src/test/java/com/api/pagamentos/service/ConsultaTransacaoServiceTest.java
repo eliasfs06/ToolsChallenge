@@ -7,6 +7,7 @@ import com.api.pagamentos.domain.model.DescricaoTransacao;
 import com.api.pagamentos.domain.model.FormaPagamento;
 import com.api.pagamentos.domain.model.Transacao;
 import com.api.pagamentos.exceptions.NegocioException;
+import com.api.pagamentos.exceptions.NotFoundException;
 import com.api.pagamentos.repository.TransacaoRepositorio;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -43,7 +44,7 @@ class ConsultaTransacaoServiceTest {
     void deveFalharQuandoNaoEncontrarTransacaoPorId() {
         when(transacaoRepositorio.findByIdNegocio("T1")).thenReturn(Optional.empty());
 
-        assertThrows(NegocioException.class, () -> consultaServico.consultarPorId("T1"));
+        assertThrows(NotFoundException.class, () -> consultaServico.consultarPorId("T1"));
         verify(transacaoRepositorio).findByIdNegocio("T1");
     }
 
