@@ -271,7 +271,36 @@ Esse fluxo permite validar o comportamento principal esperado para a API.
 
 ---
 
-## 12. Auditoria
+## 12. Testes unitários
+
+Além dos testes manuais, o projeto contempla testes unitários para validar as principais regras de negócio da aplicação de forma isolada.
+
+### Tecnologias utilizadas nos testes
+
+Para a implementação dos testes unitários, foram utilizadas as seguintes ferramentas:
+
+* JUnit 5: para estruturação e execução dos testes
+* Mockito: para simulação de dependências e isolamento das classes testadas
+
+### Como executar os testes unitários
+
+Para executar os testes do projeto, utilize o comando abaixo na raiz da aplicação:
+
+```bash
+./mvnw test
+```
+
+Ou, no Windows:
+
+```bash
+mvnw.cmd test
+```
+
+Essa etapa permite validar rapidamente se as regras principais da aplicação funcionam conforme esperado.
+
+---
+
+## 13. Auditoria
 
 O projeto foi preparado para uso de auditoria com **Hibernate Envers**, permitindo rastrear alterações realizadas nas entidades auditadas.
 
@@ -285,7 +314,7 @@ Essa abordagem facilita rastreabilidade e manutenção histórica dos dados, o q
 
 ---
 
-## 13. Decisões de implementação
+## 14. Decisões de implementação
 
 Algumas decisões foram tomadas para deixar a solução mais robusta e próxima de um cenário real:
 
@@ -298,3 +327,4 @@ Algumas decisões foram tomadas para deixar a solução mais robusta e próxima 
 * auditoria com Envers
 * organização em camadas para facilitar evolução futura
 
+---
