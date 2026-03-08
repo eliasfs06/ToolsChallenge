@@ -314,7 +314,17 @@ Essa abordagem facilita rastreabilidade e manutenção histórica dos dados, o q
 
 ---
 
-## 14. Decisões de implementação
+## 14. Autorização/Autenticação
+
+A aplicação utiliza **Spring Security** como base para a configuração de segurança.
+
+No entanto, para facilitar a avaliação técnica e a execução dos testes dos endpoints durante o desafio, as rotas da API de transações foram temporariamente liberadas para acesso sem autenticação.
+
+Mesmo com essa liberação, a estrutura de segurança permanece preparada no projeto, permitindo futura evolução para cenários com autenticação e autorização, caso necessário.
+
+---
+
+## 15. Decisões de implementação
 
 Algumas decisões foram tomadas para deixar a solução mais robusta e próxima de um cenário real:
 
