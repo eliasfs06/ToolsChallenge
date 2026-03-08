@@ -1,0 +1,37 @@
+services:
+  postgres:
+    image: postgres:16
+    container_name: pagamentos-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: pagamentosapi
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./postgres/init.sql:/docker-entrypoint-initdb.d/init.sql
+
+  app:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+    container_name: pagamentos-app
+    restart: unless-stopped
+    depends_on:
+      - postgres
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/pagamentosapi
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: postgres
+      SPRING_JPA_HIBERNATE_DDL_AUTO: update
+      SPRING_APPLICATION_NAME: pagamentos
+      SERVER_SERVLET_CONTEXT_PATH: /pagamentos-api
+      SPRINGDOC_API_DOCS_ENABLED: "true"
+      SPRINGDOC_SWAGGER_UI_ENABLED: "true"
+    ports:
+      - "8080:8080"
+
+volumes:
+  postgres_data:
